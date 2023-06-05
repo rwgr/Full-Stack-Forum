@@ -1,0 +1,88 @@
+extends base
+
+block content
+    div.container
+        if user && user.username === username
+            div.account-title-change-line
+                h3.page-title= "Your account overview: "
+                    span.page-title--span=`${user.username}`
+                a.btn(href='/update-password') Change My Password
+            div.posts-comments-box 
+                h3 Posts
+                if userData.posts
+                    each post in userData.posts
+                        div.account-comment
+                            div.account-comment--list
+                                div.account-comment-info
+                                    span.account-comment-info--span="Created:"
+                                    div= `${post.createdAt.toLocaleString('en-GB', {timeZone: 'UTC'})}`
+                                div.account-comment-info
+                                    span.account-comment-info--span="Title:"
+                                    a.post-item--title(href=`/posts/${post.slug}`)=`${post.title}`
+                                div.account-comment-info
+                                    span.account-comment-info--span="Content:"
+                                    div.post-item--comment= `${post.postTextContent}`
+                            button#btn-delete-post.btn.btn-delete-post(data-post=`${JSON.stringify(post._id)}` data-slug=`${JSON.stringify(post.slug)}` data-user=`${JSON.stringify(post.createdBy)}`) Delete
+                            
+                else
+                    div No posts yet
+            div.posts-comments-box
+                h3 Comments
+                if userData.comments
+                    each comment in userData.comments
+                        div.account-comment
+                            div.account-comment--list
+                                div.account-comment-info
+                                    span.account-comment-info--span="Created:"
+                                    div= `${comment.createdAt.toLocaleString('en-GB', {timeZone: 'UTC'})}`
+                                div.account-comment-info
+                                    span.account-comment-info--span="Title:"
+                                    a.post-item--title(href=`/posts/${comment.slug}`)=`${comment.title}`
+                                div.account-comment-info
+                                    span.account-comment-info--span="Comment:"
+                                    div.post-item--comment= `${comment.commentTextContent}`
+                            button.btn.btn-delete-comment(data-comment=`${JSON.stringify(comment._id)}` data-title=`${JSON.stringify(comment.title)}` data-user=`${JSON.stringify(comment.username)}`) Delete
+                        
+                else
+                    div No comments
+        else
+            h3.page-title= "Account overview for: "
+                    span.page-title--span=`${userData.username}`
+            div.posts-comments-box
+                h4 Posts
+                if userData.posts
+                    each post in userData.posts
+                        div.account-comment
+                            div.account-comment--list
+                                div.account-comment-info
+                                    span.account-comment-info--span="Created:"
+                                    div= `${post.createdAt.toLocaleString('en-GB', {timeZone: 'UTC'})}`
+                                div.account-comment-info
+                                    span.account-comment-info--span="Title:"
+                                    a.post-item--title(href=`/posts/${post.slug}`)=`${post.title}`
+                                div.account-comment-info
+                                    span.account-comment-info--span="Content:"
+                                    div.post-item--comment= `${post.postTextContent}`
+                            
+                else
+                    div No posts yet
+
+            div.posts-comments-box
+                h4 Comments
+                if userData.comments
+                    each comment in userData.comments
+                        div.account-comment
+                            div.account-comment--list
+                                div.account-comment-info
+                                    span.account-comment-info--span="Created:"
+                                    div= `${comment.createdAt.toLocaleString('en-GB', {timeZone: 'UTC'})}`
+                                div.account-comment-info
+                                    span.account-comment-info--span="Title:"
+                                    a.post-item--title(href=`/posts/${comment.slug}`)=`${comment.title}`
+                                div.account-comment-info
+                                    span.account-comment-info--span="Comment:"
+                                    div.post-item--comment= `${comment.commentTextContent}`
+                else
+                    div No comments
+        
+        

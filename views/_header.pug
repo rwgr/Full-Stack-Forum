@@ -1,0 +1,17 @@
+header
+    h2.header-logo The
+        span.header-logo--second Forum
+    div.header-account
+        a.btn(href='/') Home
+        if user
+            a.btn(href='/posts/create-post') Create new post
+        
+    div.header-account
+        if user
+            div.header-logged Logged in as: 
+                span#username.header-logged--user= user.username
+            a.btn(href=`/user/${user.username}`) Account
+            a.btn.btn-logout(href='/user/logout') Logout
+        else
+            a.btn(href='/user/signup') Sign up
+            a.btn(href='/user/login') Login

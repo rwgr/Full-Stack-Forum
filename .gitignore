@@ -1,0 +1,8 @@
+.parcel-cache
+parcel-cache
+.cache
+
+node_modules
+notes.js
+config.env
+

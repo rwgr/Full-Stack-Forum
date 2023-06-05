@@ -1,0 +1,19 @@
+extends base
+
+block content
+    div.container
+        div.form-default.form-default--existing 
+            h3.page-title Existing Post
+            div Current Title: 
+                span.page-title--span#oldTitle=`${post.title}`
+            div Current Content: 
+                span.page-title--span=`${post.postTextContent}`
+        form.form-default.form-edit-post
+            h3.page-title Edit post
+            label.form__label(for='title') New Title
+            input#newTitle.form__input(type='text', placeholder='Title...', required)
+            label.form__label(for='postTextContent') Content
+            textarea#newPostTextContent.form__input(name="commentForm", rows="4", placeholder='Content...', form="commentForm", required)
+            div.form-default--buttons
+                button.btn Update post
+                a.btn(href=`/posts/${post.slug}`) Cancel

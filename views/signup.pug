@@ -1,0 +1,15 @@
+extends base
+
+block content
+    div.container
+        form.form-default.form-signup
+            h3.page-title Sign Up
+            label.form__label(for='username') Username
+            input#username.form__input(type='text', placeholder='Maximum length of 12 characters', required)
+            label.form__label(for='email') Email
+            input#email.form__input(type='email', placeholder='example@example.com', required)
+            label.form__label(for='password') Password
+            input#password.form__input(type='password', placeholder='Minimum length of 8 characters', required)
+            label.form__label(for='passwordConfirm') Confirm Password
+            input#passwordConfirm.form__input(type='password', placeholder='Confirm your password', required)
+            button.btn Create Account

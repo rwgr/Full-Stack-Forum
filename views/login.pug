@@ -1,0 +1,11 @@
+extends base
+
+block content
+    div.container
+        form.form-default.form-login(autocomplete="off")
+            h3.page-title Login
+            label.form__label(for='email') Email
+            input#email.form__input(type='email', placeholder='example@example.com', required)
+            label.form__label(for='password') Password
+            input#password.form__input(type='password', placeholder='********', required)
+            button.btn Login

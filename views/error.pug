@@ -1,0 +1,9 @@
+extends base
+
+block content
+  main.main
+      div.error
+        h2.heading-secondary.heading-secondary--error Uh oh! Something went wrong! 😢 🤯
+        div.error__msg=`Error Message: ${msg}`
+        h2 If you are trying to access a post, then this screen means that the post no longer exists!
+        a.btn.btn-(href="/") Back to home

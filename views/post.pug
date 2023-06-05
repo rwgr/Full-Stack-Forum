@@ -1,0 +1,53 @@
+extends base
+
+block content
+    main
+        div.post-view.container
+            div.post-single-overview
+                div.post-item--col-main
+                    div#title.post-item--title=post.title
+                    div.post-item--user-line
+                        div='Username: '
+                            a.post-item--username(href=`/user/${post.createdBy}`)=`${post.createdBy} `
+                        div=`Posted: ${post.createdAt.toLocaleString('en-GB', {timeZone: 'UTC'})} `
+                div.post-item--buttons
+                    if !user
+                        div  
+                    else if post.createdBy === user.username
+                        a.btn.btn-edit(href=`/posts/${post.slug}/editPost`) Edit Post
+                        a.btn.btn-account(href=`/user/${user.username}`) Delete Post From Account
+            
+
+            div.post-view-content-box
+                p= post.postTextContent
+
+            if user
+                form#commentForm.comment-form
+                    label.comment-form-title(for="comment") Leave a comment
+                    textarea#comment.comment-form-textarea(name="commentForm" rows="4" form="commentForm")
+                    button.btn.comment-form-submit Submit
+            else
+                div Please log in to leave a comment
+            
+
+
+            if post.comments
+                div= `${post.comments.length} Comments:`
+                div
+                each comment in post.comments
+                    div.comment
+                        div.comment-body
+                            div.comment-info
+                                a.comment-username(href=`/user/${comment.username}`)=comment.username
+                                div.comment-createdAt=`Posted: ${comment.createdAt.toLocaleString('en-GB', {timeZone: 'UTC'})} `
+                            div
+                                div= comment.commentTextContent
+                        if !user
+                            div  
+                        else if comment.username === user.username
+                            div
+                                button#btn-delete-comment.btn.btn-delete-comment(data-comment=`${JSON.stringify(comment._id)}` data-title=`${JSON.stringify(comment.title)}` data-user=`${JSON.stringify(comment.username)}` ) Delete
+            
+            else
+                div.post-view-comments-box There are no comments yet
+

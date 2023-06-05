@@ -1,0 +1,23 @@
+extends base
+
+block content
+    main
+        ul.post-list.container
+            each post in posts
+                li.post-item
+                    div.post-item--col-main
+                        a.post-item--title(href=`/posts/${post.slug}`)=post.title
+                        div.post-item--user-line
+                            div='Created by: '
+                                a.post-item--username(href=`/user/${post.createdBy}`)=`${post.createdBy}`
+                            div=`${post.createdAt.toLocaleString('en-GB', {timeZone: 'UTC'})} `
+                    
+                    if post.comments.length > 0
+                        div.post-item--comments-details
+                            div= `${post.comments.length} Comment(s)`
+                            a(href=`/posts/${post.slug}`) View all comments
+                    else
+                        div.post-item--comments-details
+                            div No comments yet
+
+    

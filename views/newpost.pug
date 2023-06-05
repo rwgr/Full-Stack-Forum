@@ -1,0 +1,11 @@
+extends base
+
+block content
+    div.container
+        form.form-default.form-create-post
+            h3.page-title Create a new post
+            label.form__label(for='title') Title
+            input#title.form__input(type='text', placeholder='Title...', required)
+            label.form__label(for='postTextContent') Content
+            textarea#postTextContent.form__input(name="commentForm", rows="4", placeholder='Content...', form="commentForm", required)
+            button.btn Save post
